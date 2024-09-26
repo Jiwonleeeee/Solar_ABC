@@ -147,8 +147,9 @@ eps <- sqrt(.Machine$double.eps)
 
 
 current_time <- Sys.time()
+cnt <- 0
 ##### MCMC iteration starts? #####
-for(t in 1:iter){
+for(t in 1:iter_total){
   
   Sigma_j_inv_store <- list()
   # mu_j, tau_j, rho_j
@@ -256,15 +257,20 @@ for(t in 1:iter){
   }
   
   ## save
-  mu_j_store[t, ] <- mu_j
-  tau_j_store[t, ] <- tau_j
-  rho_j_store[t, ] <- rho_j
-  
-  beta_store[t, , ] <- beta
-  sigma2_h_store[t, ] <- sigma2_h
-  
-  theta_store[[t]] <- theta
-  sigma2_hi_store[[t]] <- sigma2_hi
+  if(t%%10 == 1){
+    
+    cnt <- cnt + 1
+ 
+    mu_j_store[cnt, ] <- mu_j
+    tau_j_store[cnt, ] <- tau_j
+    rho_j_store[cnt, ] <- rho_j
+    
+    beta_store[cnt, , ] <- beta
+    sigma2_h_store[cnt, ] <- sigma2_h
+    
+    theta_store[[cnt]] <- theta
+    sigma2_hi_store[[cnt]] <- sigma2_hi
+  }
   
   print(t)
   
