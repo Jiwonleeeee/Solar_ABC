@@ -128,7 +128,7 @@ for(h in 1:H){
   }
 }
 
-# beta -> mean of theta로 하자 
+# beta -> mean of theta
 # sigma_h -> sample variance
 for(h in 1:H){
   beta[h,] <- apply(theta[[h]], 2, mean)
